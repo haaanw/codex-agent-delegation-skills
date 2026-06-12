@@ -1,0 +1,20 @@
+{
+  "name": "codex-agent-delegation",
+  "version": "0.1.0",
+  "description": "Guarded multi-agent delegation for Codex using Claude, Gemini, Kimi, GLM, DeepSeek, MiniMax, and Perplexity.",
+  "author": {
+    "name": "Hanwen"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Agent Delegation",
+    "shortDescription": "Guarded multi-agent councils for Codex.",
+    "longDescription": "Codex Agent Delegation packages guarded local scripts for Claude review and execution, Gemini/Kimi/GLM/DeepSeek/MiniMax discussion, DeepSeek patch proposals, Perplexity research with citations, and council runs that keep Codex as the orchestrator.",
+    "developerName": "Hanwen",
+    "category": "Productivity",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": "Use Codex Agent Delegation to run a guarded multi-agent council on this plan."
+  }
+}

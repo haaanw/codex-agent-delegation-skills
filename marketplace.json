@@ -1,0 +1,20 @@
+{
+  "name": "codex-agent-delegation-marketplace",
+  "interface": {
+    "displayName": "Codex Agent Delegation"
+  },
+  "plugins": [
+    {
+      "name": "codex-agent-delegation",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-agent-delegation"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Codex Agent Delegation"
+  short_description: "Delegate reviews, councils, and bounded agent work"
+  default_prompt: "Use $codex-agent-delegation to run a guarded multi-agent council on this plan."
+policy:
+  allow_implicit_invocation: true

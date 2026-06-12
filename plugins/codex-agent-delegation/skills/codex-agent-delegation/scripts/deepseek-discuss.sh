@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  printf 'Usage: %s "architecture discussion request"\n' "$0" >&2
+}
+
+if [ "$#" -eq 0 ]; then
+  usage
+  exit 64
+fi
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+. "$script_dir/common.sh"
+
+agent_require_command curl "curl is not installed or not on PATH."
+agent_require_command python3 "python3 is required for OpenAI-compatible API JSON handling."
+agent_require_any_env "DeepSeek API" DEEPSEEK_API_KEY
+
+repo_root="$(agent_repo_root)"
+cd "$repo_root"
+
+request="$*"
+status_text="$(agent_git_status_text)"
+diff_text="$(agent_git_diff_text)"
+prompt="$(agent_build_discussion_prompt "DeepSeek" "Discuss algorithmic risks, implementation tradeoffs, edge cases, and failure modes." "$request" "$status_text" "$diff_text")"
+
+base_url="${DEEPSEEK_BASE_URL:-https://api.deepseek.com}"
+endpoint="${base_url%/}/chat/completions"
+
+DELEGATE_PROVIDER_NAME="DeepSeek" \
+DELEGATE_ENDPOINT="$endpoint" \
+DELEGATE_MODEL="${DEEPSEEK_MODEL:-deepseek-v4-flash}" \
+DELEGATE_API_KEY="${DEEPSEEK_API_KEY}" \
+DELEGATE_PROMPT="$prompt" \
+DELEGATE_SYSTEM_PROMPT="You are DeepSeek, an algorithmic and implementation-risk discussion delegate. Do not use tools or call other agents." \
+"$script_dir/openai-compatible-chat.sh"
