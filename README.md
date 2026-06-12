@@ -14,10 +14,10 @@ Codex remains the orchestrator. Delegated agents must not call other agents and 
 
 ## Install From GitHub
 
-After this marketplace repo is pushed to GitHub:
+Install this marketplace from GitHub:
 
 ```bash
-codex plugin marketplace add OWNER/REPO
+codex plugin marketplace add haaanw/codex-agent-delegation-skills
 ```
 
 Then open the Codex plugin directory, select the `Codex Agent Delegation` marketplace, and install `Codex Agent Delegation`.
